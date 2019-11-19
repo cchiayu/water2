@@ -1,5 +1,6 @@
 package com.fju.water;
 
+import android.content.Intent;
 import android.os.Bundle;
 
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -56,11 +57,15 @@ public void calculate(View view) {
         } else {
             money = 12.075f * degree -110.25f;
         }
-        new AlertDialog.Builder(this)
+        Intent intent = new Intent(this, ResultActivity.class);
+        intent.putExtra("FEE", money);
+        startActivity(intent);
+
+       /* new AlertDialog.Builder(this)
                 .setTitle("隔月抄表費用")
                 .setMessage("費用:" +money)
                 .setPositiveButton("OK",null)
-                .show();
+                .show();*/
     }
     if(!TextUtils.isEmpty(ednext.getText().toString())) {
         float degree = Float.parseFloat(ednext.getText().toString());
@@ -74,13 +79,15 @@ public void calculate(View view) {
         } else {
             money = 12.075f * degree -220.5f;
         }
-        new AlertDialog.Builder(this)
+       /* new AlertDialog.Builder(this)
                 .setTitle("隔月抄表費用")
                 .setMessage("費用:" +money)
                 .setPositiveButton("OK",null)
-                .show();
+                .show();*/
     }
 }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
