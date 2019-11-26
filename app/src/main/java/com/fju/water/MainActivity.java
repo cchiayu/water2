@@ -14,12 +14,16 @@ import android.text.TextUtils;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.Switch;
+import android.widget.TextView;
 
 public class MainActivity extends AppCompatActivity {
 
     private EditText edmonth;
-    private EditText ednext;
+ //   private EditText ednext;
+    boolean isNext = false;
   //  float month;
   //  float next;
 
@@ -31,9 +35,17 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         edmonth = findViewById(R.id.month);
-        ednext = findViewById(R.id.next);
+        //ednext = findViewById(R.id.next);
 
-
+        Switch sw  = findViewById(R.id.sw);
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                isNext = isChecked;
+                TextView text  = findViewById(R.id.type);
+                text.setText(isNext ? getString(R.string.every_other_month):getString((R.string.monthly)));
+            }
+        });
 
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -43,20 +55,34 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+
     }
-public void calculate(View view) {
-    if(!TextUtils.isEmpty(edmonth.getText().toString())) {
-        float degree = Float.parseFloat(edmonth.getText().toString());
-        float money = 0;
-        if (degree < 11) {
-            money = 7.35f * degree;
-        } else if (degree < 31) {
-            money = 9.45f * degree - 21;
-        } else if (degree < 51) {
-            money = 11.55f * degree - 84;
-        } else {
-            money = 12.075f * degree -110.25f;
-        }
+        public void calculate(View view) {
+         if(!TextUtils.isEmpty(edmonth.getText().toString())) {
+              float degree = Float.parseFloat(edmonth.getText().toString());
+              float money = 0;
+              if(isNext=false){
+
+              if (degree < 11) {
+                  money = 7.35f * degree;
+              }     else if (degree < 31) {
+               money = 9.45f * degree - 21;
+                } else if (degree < 51) {
+                 money = 11.55f * degree - 84;
+              } else {
+                    money = 12.075f * degree -110.25f;
+              }
+              }else{
+                  if (degree < 21) {
+                      money = 7.35f * degree;
+                  } else if (degree < 61) {
+                      money = 9.45f * degree - 42;
+                  } else if (degree < 101) {
+                      money = 11.55f * degree - 168;
+                  } else {
+                      money = 12.075f * degree -220.5f;
+                  }
+              }
         Intent intent = new Intent(this, ResultActivity.class);
         intent.putExtra(getString(R.string.extra_fee), money);
         startActivity(intent);
@@ -67,7 +93,7 @@ public void calculate(View view) {
                 .setPositiveButton(getString(R.string.ok),null)   ok也是
                 .show();*/
     }
-    if(!TextUtils.isEmpty(ednext.getText().toString())) {
+   /*if(!TextUtils.isEmpty(ednext.getText().toString())) {
         float degree = Float.parseFloat(ednext.getText().toString());
         float money = 0;
         if (degree < 21) {
@@ -78,14 +104,14 @@ public void calculate(View view) {
             money = 11.55f * degree - 168;
         } else {
             money = 12.075f * degree -220.5f;
-        }
+        }*/
        /* new AlertDialog.Builder(this)
                 .setTitle("隔月抄表費用")
                 .setMessage(getString(R.string.fee) +money)
                 .setPositiveButton(getString(R.string.ok),null)
                 .show();*/
     }
-}
+
 
 
     @Override
