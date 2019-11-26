@@ -58,13 +58,13 @@ public void calculate(View view) {
             money = 12.075f * degree -110.25f;
         }
         Intent intent = new Intent(this, ResultActivity.class);
-        intent.putExtra("FEE", money);
+        intent.putExtra(getString(R.string.extra_fee), money);
         startActivity(intent);
 
-       /* new AlertDialog.Builder(this)
+     /*   new AlertDialog.Builder(this)
                 .setTitle("隔月抄表費用")
-                .setMessage("費用:" +money)
-                .setPositiveButton("OK",null)
+                .setMessage(getString(R.string.fee) +money)      fee被抽取到strings
+                .setPositiveButton(getString(R.string.ok),null)   ok也是
                 .show();*/
     }
     if(!TextUtils.isEmpty(ednext.getText().toString())) {
@@ -81,8 +81,8 @@ public void calculate(View view) {
         }
        /* new AlertDialog.Builder(this)
                 .setTitle("隔月抄表費用")
-                .setMessage("費用:" +money)
-                .setPositiveButton("OK",null)
+                .setMessage(getString(R.string.fee) +money)
+                .setPositiveButton(getString(R.string.ok),null)
                 .show();*/
     }
 }
