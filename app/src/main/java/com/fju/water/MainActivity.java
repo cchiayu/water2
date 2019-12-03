@@ -28,9 +28,6 @@ public class MainActivity extends AppCompatActivity {
     private EditText edmonth;
  //   private EditText ednext;
     boolean isNext = false;
-  //  float month;
-  //  float next;
-
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
