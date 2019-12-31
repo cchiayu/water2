@@ -26,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
     private static final String TAG = MainActivity.class.getSimpleName() ;
     private EditText edmonth;
- //   private EditText ednext;
+ //    private EditText ednext;
     boolean isNext = false;
 
     @Override
@@ -40,18 +40,17 @@ public class MainActivity extends AppCompatActivity {
         //ednext = findViewById(R.id.next);
 
         Switch sw  = findViewById(R.id.sw);
-        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+        sw.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {//override + o
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
                 isNext = isChecked;
                 TextView text  = findViewById(R.id.type);
-                text.setText(isNext ? getString(R.string.every_other_month):getString((R.string.monthly)));
+               text.setText(isNext ? getString(R.string.every_other_month):getString((R.string.monthly)));//多國語言設置的名字更替
             }
         });
 
-
         Spinner cities = findViewById(R.id.spinner);
-       cities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        cities.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
            @Override
            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
                Log.d(TAG,getResources().getStringArray(R.array.cities)[position]);
