@@ -78,8 +78,8 @@ public class MainActivity extends AppCompatActivity {
          if(!TextUtils.isEmpty(edmonth.getText().toString())) {
               float degree = Float.parseFloat(edmonth.getText().toString());
               float money = 0;
-              if(isNext=false){
 
+              if(isNext==false){//switch
               if (degree < 11) {
                   money = 7.35f * degree;
               }     else if (degree < 31) {
@@ -89,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
               } else {
                     money = 12.075f * degree -110.25f;
               }
-              }else{
+              }else if (isNext == true){
                   if (degree < 21) {
                       money = 7.35f * degree;
                   } else if (degree < 61) {
